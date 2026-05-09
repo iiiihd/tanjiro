@@ -6,6 +6,7 @@ export default async function handler(req, res) {
   const apiUri = process.env.NYLAS_API_URI;
   const host = req.headers.host;
   const redirectUri = `https://${host}/api/callback`;
+  const provider = req.query.provider || 'google';
 
   try {
     const params = new URLSearchParams({
@@ -13,12 +14,15 @@ export default async function handler(req, res) {
       redirect_uri: redirectUri,
       response_type: 'code',
       access_type: 'online',
-      scope: 'https://www.googleapis.com/auth/gmail.readonly',
-      provider: 'google',
+      provider,
     });
 
+    if (provider === 'google') {
+      params.append('scope', 'https://www.googleapis.com/auth/gmail.readonly');
+    }
+
     const authUrl = `${apiUri}/v3/connect/auth?${params}`;
-    res.json({ url: authUrl, redirect_uri: redirectUri });
+    res.json({ url: authUrl });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
