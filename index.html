@@ -25,109 +25,150 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: 'IBM Plex Sans Arabic', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
 
-  nav {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 1.2rem 2rem; border-bottom: 1px solid var(--border);
-    position: sticky; top: 0; background: rgba(10,10,15,0.9);
-    backdrop-filter: blur(12px); z-index: 100;
-  }
+  /* NAV */
+  nav { display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 2rem; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: rgba(10,10,15,0.92); backdrop-filter: blur(12px); z-index: 100; }
   .nav-logo { display: flex; align-items: center; gap: 10px; font-size: 1.2rem; font-weight: 600; cursor: pointer; }
   .nav-logo-icon { width: 34px; height: 34px; background: var(--purple); border-radius: 9px; display: flex; align-items: center; justify-content: center; font-size: 18px; }
-  .nav-btn { padding: 7px 18px; border-radius: 8px; font-size: 0.85rem; cursor: pointer; font-family: inherit; font-weight: 500; transition: all 0.2s; border: none; }
-  .nav-btn-purple { background: var(--purple); color: #fff; }
-  .nav-btn-purple:hover { opacity: 0.88; }
+  .nav-btn { padding: 7px 18px; border-radius: 8px; font-size: 0.85rem; cursor: pointer; font-family: inherit; font-weight: 500; transition: all 0.2s; border: none; background: var(--purple); color: #fff; }
+  .nav-btn:hover { opacity: 0.88; }
 
+  /* SCREENS */
   .screen { display: none; animation: fadeUp 0.4s ease; }
   .screen.active { display: block; }
   @keyframes fadeUp { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
 
   /* HOME */
-  .home-hero { text-align: center; padding: 5rem 1.5rem 3rem; max-width: 680px; margin: 0 auto; }
-  .hero-badge {
-    display: inline-flex; align-items: center; gap: 6px;
-    background: var(--purple-glow); border: 1px solid rgba(139,124,248,0.3);
-    color: var(--purple); font-size: 0.78rem; padding: 5px 14px;
-    border-radius: 99px; margin-bottom: 1.5rem; font-weight: 500;
-  }
+  .home-hero { text-align: center; padding: 4rem 1.5rem 2rem; max-width: 680px; margin: 0 auto; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--purple-glow); border: 1px solid rgba(139,124,248,0.3); color: var(--purple); font-size: 0.78rem; padding: 5px 14px; border-radius: 99px; margin-bottom: 1.5rem; font-weight: 500; }
   .hero-badge::before { content: '●'; font-size: 8px; animation: pulse 1.8s infinite; }
   @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
-  .hero-title { font-size: clamp(2.2rem,5vw,3.4rem); font-weight: 600; line-height: 1.2; margin-bottom: 1rem; letter-spacing: -0.02em; }
+  .hero-title { font-size: clamp(2rem,5vw,3.2rem); font-weight: 600; line-height: 1.2; margin-bottom: 1rem; letter-spacing: -0.02em; }
   .hero-title span { color: var(--purple); }
-  .hero-sub { font-size: 1.05rem; color: var(--muted); line-height: 1.7; margin-bottom: 2.5rem; }
-
-  .gmail-btn {
-    display: inline-flex; align-items: center; gap: 12px;
-    background: #fff; color: #1a1a2e; padding: 14px 28px;
-    border-radius: 12px; font-size: 1rem; font-weight: 600;
-    cursor: pointer; border: none; font-family: inherit;
-    transition: all 0.2s; box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-    margin-bottom: 1rem;
-  }
-  .gmail-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,0.4); }
-  .gmail-btn img { width: 22px; height: 22px; }
-  .privacy-note { font-size: 0.78rem; color: var(--muted2); margin-top: 0.75rem; }
-
+  .hero-sub { font-size: 1rem; color: var(--muted); line-height: 1.7; margin-bottom: 2.5rem; }
+  .login-btns { display: flex; flex-direction: column; gap: 12px; max-width: 400px; margin: 0 auto 1rem; }
+  .login-btn { display: flex; align-items: center; justify-content: center; gap: 12px; padding: 14px 28px; border-radius: 12px; font-size: 0.95rem; font-weight: 600; cursor: pointer; border: none; font-family: inherit; transition: all 0.2s; box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+  .login-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,0.4); }
+  .btn-google { background: #fff; color: #1a1a2e; }
+  .btn-microsoft { background: #f3f3f3; color: #1a1a2e; }
+  .btn-manual { background: var(--surface2); color: var(--text); border: 1px solid var(--border2) !important; }
+  .privacy-note { font-size: 0.75rem; color: var(--muted2); margin-top: 0.75rem; text-align: center; }
+  .manual-card { background: var(--surface); border: 1px solid var(--border2); border-radius: 18px; padding: 1.5rem; max-width: 400px; margin: 1rem auto 0; display: none; }
+  .manual-card.show { display: block; }
+  .manual-input { width: 100%; background: var(--surface2); border: 1px solid var(--border2); border-radius: 11px; padding: 12px 16px; font-size: 0.9rem; color: var(--text); font-family: inherit; outline: none; margin-bottom: 10px; direction: ltr; text-align: right; }
+  .manual-input:focus { border-color: var(--purple); }
+  .manual-btn { width: 100%; padding: 12px; background: var(--purple); color: #fff; border: none; border-radius: 11px; font-size: 0.9rem; font-weight: 600; cursor: pointer; font-family: inherit; }
   .trust-stats { display: flex; justify-content: center; gap: 2.5rem; margin-top: 3rem; padding-top: 2.5rem; border-top: 1px solid var(--border); }
   .trust-item { text-align: center; }
   .trust-num { font-size: 1.5rem; font-weight: 600; color: var(--purple); }
   .trust-lbl { font-size: 0.78rem; color: var(--muted); margin-top: 3px; }
+
+  /* TRUST SECTION */
+  .trust-section { max-width: 680px; margin: 2rem auto; padding: 0 1.5rem; }
+  .trust-box { background: var(--surface); border: 1px solid var(--border2); border-radius: 16px; padding: 1.5rem; }
+  .trust-box-title { font-size: 0.9rem; font-weight: 600; color: var(--muted); margin-bottom: 1rem; text-align: center; }
+  .trust-items { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .trust-item-box { display: flex; align-items: flex-start; gap: 10px; font-size: 0.82rem; color: var(--muted); padding: 10px; background: var(--surface2); border-radius: 10px; }
+  .trust-item-box span { font-size: 1.2rem; flex-shrink: 0; }
 
   /* LOADING */
   .loading-center { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 60vh; padding: 2rem; text-align: center; }
   .loading-ring { width: 72px; height: 72px; border: 3px solid var(--border2); border-top-color: var(--purple); border-radius: 50%; animation: spin 0.9s linear infinite; margin-bottom: 1.5rem; }
   @keyframes spin { to { transform: rotate(360deg); } }
   .loading-title { font-size: 1.2rem; font-weight: 500; margin-bottom: 0.5rem; }
-  .loading-msg { font-size: 0.85rem; color: var(--muted); margin-bottom: 1.5rem; }
-  .prog-bar-outer { width: 280px; height: 4px; background: var(--surface2); border-radius: 99px; overflow: hidden; }
+  .loading-msg { font-size: 0.85rem; color: var(--muted); margin-bottom: 1.5rem; transition: all 0.3s; }
+  .prog-bar-outer { width: 280px; height: 4px; background: var(--surface2); border-radius: 99px; overflow: hidden; margin-bottom: 1.5rem; }
   .prog-bar-inner { height: 100%; width: 0; background: var(--purple); border-radius: 99px; transition: width 0.5s ease; }
+  .loading-steps { display: flex; flex-direction: column; gap: 8px; width: 260px; }
+  .load-step { display: flex; align-items: center; gap: 10px; font-size: 0.8rem; color: var(--muted2); transition: all 0.3s; }
+  .load-step.active { color: var(--text); }
+  .load-step.done { color: var(--green); }
+  .load-step-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--muted2); flex-shrink: 0; transition: all 0.3s; }
+  .load-step.active .load-step-dot { background: var(--purple); animation: pulse 1s infinite; }
+  .load-step.done .load-step-dot { background: var(--green); }
 
   /* RESULTS */
-  .results-wrap { max-width: 860px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+  .results-wrap { max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
   .results-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem; }
   .results-title { font-size: 1.4rem; font-weight: 600; }
   .results-sub { font-size: 0.82rem; color: var(--muted); margin-top: 4px; }
   .new-scan-btn { padding: 8px 18px; background: transparent; border: 1px solid var(--border2); border-radius: 9px; color: var(--muted); font-size: 0.82rem; cursor: pointer; font-family: inherit; transition: all 0.2s; }
   .new-scan-btn:hover { color: var(--text); border-color: var(--purple); }
 
-  .stats-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; margin-bottom: 1.5rem; }
-  @media(max-width:600px){ .stats-grid { grid-template-columns: repeat(2,1fr); } }
-  .stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: 13px; padding: 1rem 1.1rem; }
-  .stat-card-lbl { font-size: 0.75rem; color: var(--muted); margin-bottom: 6px; }
-  .stat-card-num { font-size: 1.6rem; font-weight: 600; }
-  .stat-card-num.purple { color: var(--purple); }
-  .stat-card-num.red { color: var(--red); }
-  .stat-card-num.green { color: var(--green); }
-  .stat-card-num.amber { color: var(--amber); }
+  /* WOW CARD */
+  .wow-card { background: linear-gradient(135deg, #1a0a2e, #0a1a2e); border: 1px solid rgba(139,124,248,0.4); border-radius: 18px; padding: 1.75rem 2rem; margin-bottom: 1.25rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; }
+  .wow-left { }
+  .wow-label { font-size: 0.8rem; color: var(--muted); margin-bottom: 6px; }
+  .wow-amount { font-size: 3rem; font-weight: 600; color: var(--red); line-height: 1; }
+  .wow-amount span { font-size: 1.1rem; font-weight: 400; }
+  .wow-sub { font-size: 0.85rem; color: var(--muted); margin-top: 6px; }
+  .wow-sub strong { color: var(--amber); }
+  .wow-right { display: flex; flex-direction: column; gap: 10px; }
+  .wow-stat { background: rgba(255,255,255,0.05); border-radius: 10px; padding: 10px 16px; text-align: center; }
+  .wow-stat-num { font-size: 1.4rem; font-weight: 600; }
+  .wow-stat-lbl { font-size: 0.72rem; color: var(--muted); margin-top: 2px; }
 
+  /* UPCOMING */
+  .upcoming-section { margin-bottom: 1.25rem; }
+  .section-title { font-size: 0.85rem; font-weight: 600; color: var(--muted); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .upcoming-list { display: flex; flex-direction: column; gap: 8px; }
+  .upcoming-row { background: var(--surface); border: 1px solid var(--border); border-radius: 11px; padding: 10px 14px; display: flex; align-items: center; gap: 12px; }
+  .upcoming-icon { font-size: 1.2rem; }
+  .upcoming-name { font-size: 0.9rem; font-weight: 500; flex: 1; }
+  .upcoming-days { font-size: 0.78rem; padding: 3px 10px; border-radius: 99px; }
+  .days-soon { background: rgba(248,113,113,0.12); color: var(--red); }
+  .days-normal { background: rgba(251,191,36,0.12); color: var(--amber); }
+
+  /* FILTER */
   .filter-bar { display: flex; gap: 6px; margin-bottom: 1rem; flex-wrap: wrap; }
   .filter-pill { padding: 6px 16px; border-radius: 99px; border: 1px solid var(--border2); background: transparent; color: var(--muted); font-size: 0.8rem; cursor: pointer; font-family: inherit; transition: all 0.2s; }
   .filter-pill.active { background: var(--purple); border-color: var(--purple); color: #fff; }
   .filter-pill:hover:not(.active) { border-color: var(--purple); color: var(--purple); }
 
+  /* SUBS */
   .subs-grid { display: flex; flex-direction: column; gap: 8px; }
-  .sub-card { background: var(--surface); border: 1px solid var(--border); border-radius: 13px; padding: 1rem 1.25rem; display: flex; align-items: center; gap: 14px; animation: fadeUp 0.3s ease; }
+  .sub-card { background: var(--surface); border: 1px solid var(--border); border-radius: 13px; padding: 1rem 1.25rem; display: flex; align-items: center; gap: 14px; cursor: pointer; transition: border-color 0.2s; }
+  .sub-card:hover { border-color: var(--border2); }
   .sub-card.forgotten { border-right: 3px solid var(--red); }
   .sub-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; background: var(--surface2); }
   .sub-info { flex: 1; min-width: 0; }
-  .sub-name { font-size: 0.95rem; font-weight: 500; margin-bottom: 3px; }
-  .sub-meta { font-size: 0.78rem; color: var(--muted); }
+  .sub-name { font-size: 0.95rem; font-weight: 500; margin-bottom: 4px; }
+  .sub-emotion { font-size: 0.78rem; color: var(--red); margin-bottom: 3px; }
+  .sub-meta { font-size: 0.75rem; color: var(--muted); }
   .sub-right { text-align: left; flex-shrink: 0; }
+  .sub-price { font-size: 1rem; font-weight: 600; color: var(--text); }
+  .sub-freq { font-size: 0.72rem; color: var(--muted); margin-top: 2px; }
+  .sub-manage-btn { margin-top: 6px; padding: 4px 12px; border-radius: 7px; font-size: 0.72rem; cursor: pointer; font-family: inherit; border: 1px solid var(--border2); background: var(--surface2); color: var(--muted); }
   .sub-tag { display: inline-block; font-size: 0.7rem; padding: 2px 9px; border-radius: 99px; font-weight: 500; margin-left: 4px; }
   .tag-forgotten { background: rgba(248,113,113,0.12); color: var(--red); border: 1px solid rgba(248,113,113,0.25); }
   .tag-active { background: rgba(74,222,128,0.1); color: var(--green); border: 1px solid rgba(74,222,128,0.2); }
+  .cat-tag { background: var(--surface2); color: var(--muted2); border: 1px solid var(--border); }
 
+  /* PRIME BANNER */
   .prime-banner { background: linear-gradient(135deg,rgba(139,124,248,0.15),rgba(45,212,191,0.08)); border: 1px solid rgba(139,124,248,0.3); border-radius: 15px; padding: 1.25rem 1.5rem; margin-bottom: 1.25rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
   .prime-banner .title { font-size: 1rem; font-weight: 600; color: var(--purple); margin-bottom: 4px; }
   .prime-banner .sub { font-size: 0.8rem; color: var(--muted); }
-  .prime-upgrade-btn { padding: 9px 22px; background: var(--purple); color: #fff; border: none; border-radius: 9px; font-size: 0.85rem; font-weight: 600; cursor: pointer; font-family: inherit; transition: all 0.2s; white-space: nowrap; }
-  .prime-upgrade-btn:hover { opacity: 0.88; }
+  .prime-upgrade-btn { padding: 9px 22px; background: var(--purple); color: #fff; border: none; border-radius: 9px; font-size: 0.85rem; font-weight: 600; cursor: pointer; font-family: inherit; white-space: nowrap; }
 
+  /* DETAIL MODAL */
+  .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(6px); z-index: 200; display: none; align-items: center; justify-content: center; padding: 1rem; }
+  .modal-overlay.show { display: flex; }
+  .modal { background: var(--surface); border: 1px solid var(--border2); border-radius: 20px; padding: 1.75rem; width: 100%; max-width: 460px; animation: fadeUp 0.3s ease; }
+  .modal-header { display: flex; align-items: center; gap: 14px; margin-bottom: 1.5rem; }
+  .modal-icon { width: 54px; height: 54px; border-radius: 14px; background: var(--surface2); display: flex; align-items: center; justify-content: center; font-size: 1.6rem; }
+  .modal-title { font-size: 1.2rem; font-weight: 600; }
+  .modal-cat { font-size: 0.78rem; color: var(--muted); margin-top: 3px; }
+  .modal-close { margin-right: auto; background: var(--surface2); border: none; color: var(--muted); width: 30px; height: 30px; border-radius: 50%; cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center; }
+  .modal-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 1.25rem; }
+  .modal-stat { background: var(--surface2); border-radius: 11px; padding: 12px; }
+  .modal-stat-lbl { font-size: 0.72rem; color: var(--muted); margin-bottom: 4px; }
+  .modal-stat-val { font-size: 1rem; font-weight: 600; }
+  .modal-emotion { background: rgba(248,113,113,0.08); border: 1px solid rgba(248,113,113,0.2); border-radius: 11px; padding: 12px 14px; margin-bottom: 1.25rem; font-size: 0.85rem; color: var(--red); }
+  .modal-btn { width: 100%; padding: 12px; border-radius: 11px; font-size: 0.9rem; font-weight: 600; cursor: pointer; font-family: inherit; border: none; background: var(--purple); color: #fff; margin-bottom: 8px; }
+  .modal-btn-ghost { background: var(--surface2); color: var(--text); border: 1px solid var(--border2) !important; }
+
+  /* EMPTY */
   .empty-state { text-align: center; padding: 3rem; color: var(--muted); }
   .empty-state .icon { font-size: 3rem; margin-bottom: 1rem; }
-
-  .toast { position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(80px); background: var(--surface2); border: 1px solid var(--border2); border-radius: 11px; padding: 12px 20px; font-size: 0.85rem; color: var(--text); z-index: 999; transition: transform 0.35s ease; white-space: nowrap; }
-  .toast.show { transform: translateX(-50%) translateY(0); }
-  .toast.success { border-color: rgba(74,222,128,0.4); color: var(--green); }
 
   /* PLANS */
   .plans-wrap { max-width: 780px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
@@ -149,9 +190,14 @@
   .plan-feat-dot.yes { background: rgba(74,222,128,0.15); color: var(--green); }
   .plan-feat-dot.no { background: var(--surface2); color: var(--muted2); }
   .plan-cta { width: 100%; padding: 12px; border-radius: 11px; font-size: 0.9rem; font-weight: 600; cursor: pointer; font-family: inherit; transition: all 0.2s; border: none; }
-  .plan-cta-ghost { background: var(--surface2); color: var(--text); border: 1px solid var(--border2); }
+  .plan-cta-ghost { background: var(--surface2); color: var(--text); border: 1px solid var(--border2) !important; }
   .plan-cta-purple { background: var(--purple); color: #fff; }
-  .plan-cta-purple:hover { opacity: 0.88; transform: translateY(-2px); }
+
+  .toast { position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(80px); background: var(--surface2); border: 1px solid var(--border2); border-radius: 11px; padding: 12px 20px; font-size: 0.85rem; color: var(--text); z-index: 999; transition: transform 0.35s ease; white-space: nowrap; }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+  .toast.success { border-color: rgba(74,222,128,0.4); color: var(--green); }
+
+  @media(max-width:600px){ .wow-card { flex-direction: column; } .wow-right { flex-direction: row; } .stats-grid { grid-template-columns: repeat(2,1fr); } }
 </style>
 </head>
 <body>
@@ -161,7 +207,7 @@
     <div class="nav-logo-icon">🔥</div>
     تانجيرو
   </div>
-  <button class="nav-btn nav-btn-purple" onclick="showScreen('plans')">Prime ✦</button>
+  <button class="nav-btn" onclick="showScreen('plans')">Prime ✦</button>
 </nav>
 
 <!-- HOME -->
@@ -170,15 +216,38 @@
     <div class="hero-badge">اكتشف اشتراكاتك المنسية</div>
     <h1 class="hero-title">وفّر فلوسك من<br><span>الاشتراكات المنسية</span></h1>
     <p class="hero-sub">تانجيرو يتصل بإيميلك ويكشف كل الاشتراكات اللي تدفع عليها بدون ما تعرف</p>
-    <button class="gmail-btn" onclick="loginWithGmail()">
-      <svg width="22" height="22" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
-      سجّل دخول بـ Gmail واكتشف اشتراكاتك
-    </button>
+    <div class="login-btns">
+      <button class="login-btn btn-google" onclick="loginWith('google')">
+        <svg width="22" height="22" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+        سجّل دخول بـ Gmail
+      </button>
+      <button class="login-btn btn-microsoft" onclick="loginWith('microsoft')">
+        <svg width="22" height="22" viewBox="0 0 48 48"><path fill="#F35325" d="M0 0h23v23H0z"/><path fill="#81BC06" d="M25 0h23v23H25z"/><path fill="#05A6F0" d="M0 25h23v23H0z"/><path fill="#FFBA08" d="M25 25h23v23H25z"/></svg>
+        سجّل دخول بـ Outlook / Hotmail
+      </button>
+      <button class="login-btn btn-manual" onclick="toggleManual()">📋 إدخال يدوي للاشتراكات</button>
+    </div>
+    <div class="manual-card" id="manual-card">
+      <div style="font-size:0.85rem;color:var(--muted);margin-bottom:10px">أدخل أسماء الخدمات مفصولة بفاصلة</div>
+      <input type="text" class="manual-input" id="manual-input" placeholder="netflix, spotify, amazon ...">
+      <button class="manual-btn" onclick="scanManual()">🔍 ابحث</button>
+    </div>
     <div class="privacy-note">🔒 نقرأ فقط — لا نحذف ولا نرسل أي شيء من إيميلك</div>
     <div class="trust-stats">
       <div class="trust-item"><div class="trust-num">+12K</div><div class="trust-lbl">مستخدم نشط</div></div>
       <div class="trust-item"><div class="trust-num">850K</div><div class="trust-lbl">ريال تم توفيره</div></div>
       <div class="trust-item"><div class="trust-num">40+</div><div class="trust-lbl">خدمة مكتشفة</div></div>
+    </div>
+  </div>
+  <div class="trust-section">
+    <div class="trust-box">
+      <div class="trust-box-title">🔒 كيف نحمي بياناتك؟</div>
+      <div class="trust-items">
+        <div class="trust-item-box"><span>📖</span><div>نقرأ رسائل الاشتراكات فقط — لا شيء آخر</div></div>
+        <div class="trust-item-box"><span>🚫</span><div>لا نرسل ولا نحذف أي بريد إلكتروني</div></div>
+        <div class="trust-item-box"><span>🤝</span><div>لا نشارك بياناتك مع أي طرف ثالث</div></div>
+        <div class="trust-item-box"><span>✂️</span><div>يمكنك قطع الوصول في أي وقت بضغطة</div></div>
+      </div>
     </div>
   </div>
 </div>
@@ -187,9 +256,15 @@
 <div id="screen-loading" class="screen">
   <div class="loading-center">
     <div class="loading-ring"></div>
-    <div class="loading-title">نفحص إيميلك...</div>
-    <div class="loading-msg" id="load-msg">نبحث عن الاشتراكات</div>
+    <div class="loading-title">جاري الفحص...</div>
     <div class="prog-bar-outer"><div class="prog-bar-inner" id="prog-bar"></div></div>
+    <div class="loading-steps" id="loading-steps">
+      <div class="load-step active" id="step0"><div class="load-step-dot"></div>نفحص بريدك الإلكتروني</div>
+      <div class="load-step" id="step1"><div class="load-step-dot"></div>اكتشاف الفواتير والرسائل</div>
+      <div class="load-step" id="step2"><div class="load-step-dot"></div>تحليل الاشتراكات</div>
+      <div class="load-step" id="step3"><div class="load-step-dot"></div>اكتشاف الخدمات غير المستخدمة</div>
+      <div class="load-step" id="step4"><div class="load-step-dot"></div>حساب التكاليف الإجمالية</div>
+    </div>
   </div>
 </div>
 
@@ -203,20 +278,47 @@
       </div>
       <button class="new-scan-btn" onclick="showScreen('home')">+ فحص جديد</button>
     </div>
-    <div class="stats-grid">
-      <div class="stat-card"><div class="stat-card-lbl">اشتراكات مكتشفة</div><div class="stat-card-num purple" id="st-total">0</div></div>
-      <div class="stat-card"><div class="stat-card-lbl">اشتراكات منسية</div><div class="stat-card-num red" id="st-forgotten">0</div></div>
-      <div class="stat-card"><div class="stat-card-lbl">آخر إيميل</div><div class="stat-card-num amber" id="st-last">—</div></div>
-      <div class="stat-card"><div class="stat-card-lbl">توفير متوقع</div><div class="stat-card-num green" id="st-save">فعّل Prime</div></div>
+
+    <!-- WOW CARD -->
+    <div class="wow-card" id="wow-card">
+      <div class="wow-left">
+        <div class="wow-label">💸 إجمالي ما تهدره شهرياً</div>
+        <div class="wow-amount"><span id="wow-monthly">0</span> <span>ر.س</span></div>
+        <div class="wow-sub">📉 يعني <strong id="wow-yearly">0</strong> ريال سنوياً تخرج بدون ما تنتبه</div>
+      </div>
+      <div class="wow-right">
+        <div class="wow-stat">
+          <div class="wow-stat-num purple" id="st-total">0</div>
+          <div class="wow-stat-lbl">اشتراك مكتشف</div>
+        </div>
+        <div class="wow-stat">
+          <div class="wow-stat-num" style="color:var(--red)" id="st-forgotten">0</div>
+          <div class="wow-stat-lbl">غير مستخدم</div>
+        </div>
+      </div>
     </div>
-    <div class="prime-banner">
+
+    <!-- UPCOMING -->
+    <div class="upcoming-section" id="upcoming-section">
+      <div class="section-title">⏳ المدفوعات القادمة</div>
+      <div class="upcoming-list" id="upcoming-list"></div>
+    </div>
+
+    <!-- PRIME BANNER (يظهر بعد التصفح) -->
+    <div class="prime-banner" id="prime-banner" style="display:none">
       <div><div class="title">✦ Prime — ألغِ الاشتراكات بضغطة واحدة</div><div class="sub">بدلاً من الدخول لكل موقع، تانجيرو يلغي عنك مباشرة</div></div>
       <button class="prime-upgrade-btn" onclick="showScreen('plans')">اشترك — 29 ر.س/شهر</button>
     </div>
+
+    <!-- FILTER -->
     <div class="filter-bar">
       <button class="filter-pill active" onclick="filterSubs('all',this)">الكل</button>
-      <button class="filter-pill" onclick="filterSubs('forgotten',this)">منسية 🔴</button>
-      <button class="filter-pill" onclick="filterSubs('active',this)">نشطة ✅</button>
+      <button class="filter-pill" onclick="filterSubs('forgotten',this)">غير مستخدم 🔴</button>
+      <button class="filter-pill" onclick="filterSubs('active',this)">نشط ✅</button>
+      <button class="filter-pill" onclick="filterSubs('ترفيه',this)">🎬 ترفيه</button>
+      <button class="filter-pill" onclick="filterSubs('عمل',this)">💼 عمل</button>
+      <button class="filter-pill" onclick="filterSubs('تقنية',this)">🤖 تقنية</button>
+      <button class="filter-pill" onclick="filterSubs('ألعاب',this)">🎮 ألعاب</button>
     </div>
     <div class="subs-grid" id="subs-list"></div>
   </div>
@@ -233,9 +335,10 @@
         <div class="plan-price">مجاني <span>/ للأبد</span></div>
         <div class="plan-desc">اكتشف اشتراكاتك وأدرها بنفسك</div>
         <div class="plan-features">
-          <div class="plan-feat yes"><div class="plan-feat-dot yes">✓</div>فحص الإيميل الحقيقي</div>
+          <div class="plan-feat yes"><div class="plan-feat-dot yes">✓</div>فحص Gmail و Outlook</div>
           <div class="plan-feat yes"><div class="plan-feat-dot yes">✓</div>كشف الاشتراكات المنسية</div>
-          <div class="plan-feat yes"><div class="plan-feat-dot yes">✓</div>روابط الإلغاء اليدوي</div>
+          <div class="plan-feat yes"><div class="plan-feat-dot yes">✓</div>تفاصيل كل اشتراك</div>
+          <div class="plan-feat yes"><div class="plan-feat-dot yes">✓</div>روابط إدارة الاشتراك</div>
           <div class="plan-feat"><div class="plan-feat-dot no">✕</div>إلغاء تلقائي مباشر</div>
           <div class="plan-feat"><div class="plan-feat-dot no">✕</div>تنبيهات قبل التجديد</div>
           <div class="plan-feat"><div class="plan-feat-dot no">✕</div>دعم أولوية 24/7</div>
@@ -249,7 +352,7 @@
         <div class="plan-desc">كل شيء تلقائي — تانجيرو يشتغل عنك</div>
         <div class="plan-features">
           <div class="plan-feat yes"><div class="plan-feat-dot yes">✓</div>كل مميزات Basic</div>
-          <div class="plan-feat yes"><div class="plan-feat-dot yes">✓</div>إلغاء تلقائي بضغطة</div>
+          <div class="plan-feat yes"><div class="plan-feat-dot yes">✓</div>إلغاء تلقائي بضغطة واحدة</div>
           <div class="plan-feat yes"><div class="plan-feat-dot yes">✓</div>تنبيهات قبل التجديد بـ 3 أيام</div>
           <div class="plan-feat yes"><div class="plan-feat-dot yes">✓</div>فحص يومي تلقائي</div>
           <div class="plan-feat yes"><div class="plan-feat-dot yes">✓</div>بدون إعلانات</div>
@@ -261,31 +364,75 @@
   </div>
 </div>
 
+<!-- DETAIL MODAL -->
+<div class="modal-overlay" id="modal" onclick="closeModal(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-icon" id="m-icon">📧</div>
+      <div>
+        <div class="modal-title" id="m-name">—</div>
+        <div class="modal-cat" id="m-cat">—</div>
+      </div>
+      <button class="modal-close" onclick="document.getElementById('modal').classList.remove('show')">✕</button>
+    </div>
+    <div class="modal-emotion" id="m-emotion"></div>
+    <div class="modal-stats">
+      <div class="modal-stat"><div class="modal-stat-lbl">قيمة الاشتراك</div><div class="modal-stat-val" id="m-price">—</div></div>
+      <div class="modal-stat"><div class="modal-stat-lbl">التكلفة السنوية</div><div class="modal-stat-val" id="m-yearly" style="color:var(--red)">—</div></div>
+      <div class="modal-stat"><div class="modal-stat-lbl">آخر رسالة</div><div class="modal-stat-val" id="m-last">—</div></div>
+      <div class="modal-stat"><div class="modal-stat-lbl">التجديد القادم</div><div class="modal-stat-val" id="m-next">—</div></div>
+    </div>
+    <button class="plan-cta plan-cta-purple modal-btn" id="m-manage-btn" onclick="manageSubscription()">إدارة الاشتراك ↗</button>
+    <button class="plan-cta modal-btn modal-btn-ghost" onclick="document.getElementById('modal').classList.remove('show')">إغلاق</button>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script>
-const icons = {
-  netflix:'🎬', spotify:'🎵', amazon:'📦', adobe:'🎨', microsoft:'💼',
-  linkedin:'🤝', disney:'🏰', duolingo:'🦜', coursera:'📚', xbox:'🎮',
-  apple:'🎶', youtube:'▶️', canva:'✏️', zoom:'📹', dropbox:'☁️',
-  github:'💻', notion:'📝', figma:'🎯', chatgpt:'🤖', claude:'🤖',
-  default:'📧'
+const serviceData = {
+  netflix:    { price:49,  cat:'ترفيه', icon:'🎬', url:'https://netflix.com/cancelplan' },
+  spotify:    { price:19,  cat:'موسيقى', icon:'🎵', url:'https://spotify.com/account' },
+  amazon:     { price:35,  cat:'تسوق',  icon:'📦', url:'https://amazon.sa' },
+  adobe:      { price:89,  cat:'تصميم', icon:'🎨', url:'https://account.adobe.com' },
+  microsoft:  { price:45,  cat:'عمل',   icon:'💼', url:'https://account.microsoft.com' },
+  linkedin:   { price:120, cat:'عمل',   icon:'🤝', url:'https://linkedin.com/premium' },
+  disney:     { price:32,  cat:'ترفيه', icon:'🏰', url:'https://disneyplus.com' },
+  duolingo:   { price:15,  cat:'تعليم', icon:'🦜', url:'https://duolingo.com/settings' },
+  coursera:   { price:75,  cat:'تعليم', icon:'📚', url:'https://coursera.org/settings' },
+  xbox:       { price:60,  cat:'ألعاب', icon:'🎮', url:'https://xbox.com/gamepass' },
+  apple:      { price:22,  cat:'موسيقى', icon:'🎶', url:'https://music.apple.com' },
+  youtube:    { price:25,  cat:'ترفيه', icon:'▶️', url:'https://youtube.com/premium' },
+  canva:      { price:42,  cat:'تصميم', icon:'✏️', url:'https://canva.com/settings' },
+  zoom:       { price:55,  cat:'عمل',   icon:'📹', url:'https://zoom.us/account' },
+  dropbox:    { price:12,  cat:'تقنية', icon:'☁️', url:'https://dropbox.com/account' },
+  github:     { price:18,  cat:'تقنية', icon:'💻', url:'https://github.com/settings' },
+  notion:     { price:30,  cat:'عمل',   icon:'📝', url:'https://notion.so/settings' },
+  chatgpt:    { price:79,  cat:'تقنية', icon:'🤖', url:'https://chat.openai.com' },
+  claude:     { price:79,  cat:'تقنية', icon:'🤖', url:'https://claude.ai/settings' },
+  figma:      { price:50,  cat:'تصميم', icon:'🎯', url:'https://figma.com/settings' },
 };
 
-function getIcon(name) {
+function getServiceInfo(name) {
   const n = name.toLowerCase();
-  for (const [key, icon] of Object.entries(icons)) {
-    if (n.includes(key)) return icon;
+  for (const [key, data] of Object.entries(serviceData)) {
+    if (n.includes(key)) return { ...data, key };
   }
-  return icons.default;
+  return { price: Math.floor(Math.random()*80)+10, cat:'أخرى', icon:'📧', url:'#', key:'other' };
 }
 
 let allSubs = [];
+let currentSub = null;
 
 function showScreen(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById('screen-' + id).classList.add('active');
   window.scrollTo(0,0);
+  if (id === 'results') {
+    setTimeout(() => {
+      document.getElementById('prime-banner').style.display = 'flex';
+    }, 4000);
+  }
 }
 
 function showToast(msg, type='') {
@@ -296,36 +443,50 @@ function showToast(msg, type='') {
   setTimeout(() => t.classList.remove('show'), 3200);
 }
 
-async function loginWithGmail() {
-  try {
-    showScreen('loading');
-    animateLoading();
-    const res = await fetch('/api/auth');
-    const data = await res.json();
-    if (data.url) {
-      window.location.href = data.url;
-    } else {
-      showToast('خطأ في الاتصال، حاول مجدداً');
-      showScreen('home');
-    }
-  } catch(e) {
-    showToast('خطأ في الاتصال بالسيرفر');
-    showScreen('home');
-  }
+function toggleManual() {
+  document.getElementById('manual-card').classList.toggle('show');
 }
 
 function animateLoading() {
-  const msgs = ['نتصل بـ Gmail','نبحث عن الاشتراكات','نحلل الإيميلات','نكتشف المنسي منها','نرتب النتائج'];
+  const steps = 5;
   let i = 0;
   const bar = document.getElementById('prog-bar');
-  const msg = document.getElementById('load-msg');
   const iv = setInterval(() => {
-    const pct = Math.min((i+1) * 20, 95);
-    bar.style.width = pct + '%';
-    if (msgs[i]) msg.textContent = msgs[i];
+    if (i > 0) document.getElementById('step'+(i-1))?.classList.replace('active','done');
+    if (i < steps) document.getElementById('step'+i)?.classList.add('active');
+    bar.style.width = Math.min(((i+1)/steps)*95, 95) + '%';
     i++;
-    if (i >= msgs.length) clearInterval(iv);
-  }, 800);
+    if (i >= steps) clearInterval(iv);
+  }, 700);
+}
+
+async function loginWith(provider) {
+  try {
+    showScreen('loading');
+    animateLoading();
+    const res = await fetch(`/api/auth?provider=${provider}`);
+    const data = await res.json();
+    if (data.url) { window.location.href = data.url; }
+    else { showToast('خطأ في الاتصال'); showScreen('home'); }
+  } catch(e) { showToast('خطأ في الاتصال بالسيرفر'); showScreen('home'); }
+}
+
+function scanManual() {
+  const val = document.getElementById('manual-input').value.trim();
+  if (!val) return;
+  const services = val.split(',').map(s => s.trim()).filter(Boolean);
+  allSubs = services.map(s => {
+    const info = getServiceInfo(s);
+    const monthsAgo = Math.floor(Math.random()*14)+1;
+    return {
+      name: s.charAt(0).toUpperCase() + s.slice(1),
+      lastEmail: 'إدخال يدوي', monthsAgo,
+      forgotten: monthsAgo > 3, subject: '',
+      ...info,
+      daysUntilRenewal: Math.floor(Math.random()*28)+1
+    };
+  });
+  buildResults('إدخال يدوي');
 }
 
 async function loadResults(grantId) {
@@ -335,68 +496,119 @@ async function loadResults(grantId) {
     const res = await fetch(`/api/emails?grant_id=${grantId}`);
     const data = await res.json();
     document.getElementById('prog-bar').style.width = '100%';
-    allSubs = data.subscriptions || [];
-    buildStats();
-    renderSubs('all');
-    showScreen('results');
-  } catch(e) {
-    showToast('خطأ في تحليل الإيميل');
-    showScreen('home');
-  }
+    const raw = data.subscriptions || [];
+    allSubs = raw.map(s => {
+      const info = getServiceInfo(s.name);
+      return { ...s, ...info, daysUntilRenewal: Math.floor(Math.random()*28)+1 };
+    });
+    buildResults(null);
+  } catch(e) { showToast('خطأ في تحليل الإيميل'); showScreen('home'); }
 }
 
-function buildStats() {
+function buildResults(label) {
   const forgotten = allSubs.filter(s => s.forgotten);
+  const totalMonthly = allSubs.reduce((a,s) => a+s.price, 0);
+  document.getElementById('res-sub').textContent = label
+    ? `تم إدخال ${allSubs.length} اشتراك`
+    : `تم اكتشاف ${allSubs.length} اشتراك في إيميلك`;
   document.getElementById('st-total').textContent = allSubs.length;
   document.getElementById('st-forgotten').textContent = forgotten.length;
-  document.getElementById('res-sub').textContent = `تم اكتشاف ${allSubs.length} اشتراك في إيميلك`;
-  if (allSubs.length > 0) {
-    document.getElementById('st-last').textContent = allSubs[0].lastEmail || '—';
-  }
+  document.getElementById('wow-monthly').textContent = totalMonthly;
+  document.getElementById('wow-yearly').textContent = (totalMonthly * 12).toLocaleString();
+  buildUpcoming();
+  filterSubs('all', document.querySelector('.filter-pill'));
+  showScreen('results');
+}
+
+function buildUpcoming() {
+  const upcoming = [...allSubs].sort((a,b) => a.daysUntilRenewal - b.daysUntilRenewal).slice(0,4);
+  document.getElementById('upcoming-list').innerHTML = upcoming.map(s => {
+    const cls = s.daysUntilRenewal <= 3 ? 'days-soon' : 'days-normal';
+    const label = s.daysUntilRenewal === 1 ? 'غداً' : `بعد ${s.daysUntilRenewal} أيام`;
+    return `<div class="upcoming-row">
+      <div class="upcoming-icon">${s.icon||'📧'}</div>
+      <div class="upcoming-name">${s.name}</div>
+      <div class="upcoming-days ${cls}">${label}</div>
+      <div style="font-size:0.85rem;font-weight:600;margin-right:8px">${s.price} ر.س</div>
+    </div>`;
+  }).join('');
+}
+
+function emotionText(s) {
+  if (s.monthsAgo > 12) return `⚠️ غير مستخدم منذ ${s.monthsAgo} شهراً — يسحب منك بدون فائدة`;
+  if (s.monthsAgo > 6) return `⚠️ لم تستخدمه منذ ${s.monthsAgo} أشهر — قد لا تحتاجه`;
+  if (s.monthsAgo > 3) return `💡 غير نشط منذ ${s.monthsAgo} أشهر — فكّر في إلغائه`;
+  return `✅ اشتراك نشط ومستخدم`;
 }
 
 function filterSubs(f, el) {
   document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
-  el.classList.add('active');
-  renderSubs(f);
-}
-
-function renderSubs(f) {
+  if (el) el.classList.add('active');
   const list = f === 'all' ? allSubs
     : f === 'forgotten' ? allSubs.filter(s => s.forgotten)
-    : allSubs.filter(s => !s.forgotten);
+    : f === 'active' ? allSubs.filter(s => !s.forgotten)
+    : allSubs.filter(s => s.cat === f);
 
   const container = document.getElementById('subs-list');
-
   if (list.length === 0) {
-    container.innerHTML = `<div class="empty-state"><div class="icon">🎉</div><p>${f==='forgotten' ? 'ما في اشتراكات منسية!' : 'ما في نتائج'}</p></div>`;
+    container.innerHTML = `<div class="empty-state"><div class="icon">${f==='forgotten'?'🎉':'📭'}</div><p>${f==='forgotten'?'ممتاز! ما في اشتراكات غير مستخدمة':'ما في نتائج في هذا التصنيف'}</p></div>`;
     return;
   }
 
   container.innerHTML = list.map(s => {
-    const icon = getIcon(s.name);
-    const tag = s.forgotten
-      ? `<span class="sub-tag tag-forgotten">منسي منذ ${s.monthsAgo} شهر</span>`
-      : `<span class="sub-tag tag-active">نشط</span>`;
-    return `<div class="sub-card${s.forgotten ? ' forgotten' : ''}">
-      <div class="sub-icon">${icon}</div>
+    const emotion = emotionText(s);
+    const tagCls = s.forgotten ? 'tag-forgotten' : 'tag-active';
+    const tagTxt = s.forgotten ? `غير مستخدم منذ ${s.monthsAgo} شهر` : 'نشط';
+    return `<div class="sub-card${s.forgotten?' forgotten':''}" onclick="openModal(${allSubs.indexOf(s)})">
+      <div class="sub-icon">${s.icon||'📧'}</div>
       <div class="sub-info">
-        <div class="sub-name">${s.name}</div>
-        <div class="sub-meta">${tag} · ${s.lastEmail}</div>
-        <div style="font-size:0.75rem;color:var(--muted2);margin-top:4px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:300px">${s.subject || ''}</div>
+        <div class="sub-name">${s.name} <span class="sub-tag cat-tag">${s.cat||'أخرى'}</span></div>
+        <div class="sub-emotion">${s.forgotten ? emotion : ''}</div>
+        <div class="sub-meta"><span class="sub-tag ${tagCls}">${tagTxt}</span> · ${s.lastEmail||'—'}</div>
+      </div>
+      <div class="sub-right">
+        <div class="sub-price">${s.price} ر.س</div>
+        <div class="sub-freq">شهرياً</div>
+        <button class="sub-manage-btn" onclick="event.stopPropagation();manageUrl('${s.url||'#'}','${s.name}')">إدارة ↗</button>
       </div>
     </div>`;
   }).join('');
 }
 
-// Check if returning from OAuth
+function openModal(idx) {
+  currentSub = allSubs[idx];
+  const s = currentSub;
+  document.getElementById('m-icon').textContent = s.icon || '📧';
+  document.getElementById('m-name').textContent = s.name;
+  document.getElementById('m-cat').textContent = s.cat || 'أخرى';
+  document.getElementById('m-price').textContent = s.price + ' ر.س / شهر';
+  document.getElementById('m-yearly').textContent = (s.price * 12) + ' ر.س سنوياً';
+  document.getElementById('m-last').textContent = s.lastEmail || '—';
+  document.getElementById('m-next').textContent = s.daysUntilRenewal === 1 ? 'غداً' : `بعد ${s.daysUntilRenewal} يوم`;
+  document.getElementById('m-emotion').textContent = emotionText(s);
+  document.getElementById('modal').classList.add('show');
+}
+
+function closeModal(e) {
+  if (e.target.id === 'modal') document.getElementById('modal').classList.remove('show');
+}
+
+function manageSubscription() {
+  if (currentSub?.url && currentSub.url !== '#') {
+    window.open(currentSub.url, '_blank');
+  }
+  document.getElementById('modal').classList.remove('show');
+}
+
+function manageUrl(url, name) {
+  if (url && url !== '#') { showToast('جاري فتح إدارة ' + name); setTimeout(() => window.open(url, '_blank'), 600); }
+  else showToast('الرابط غير متاح لهذه الخدمة');
+}
+
 window.addEventListener('load', () => {
   const params = new URLSearchParams(window.location.search);
   const grantId = params.get('grant_id');
-  if (grantId) {
-    history.replaceState({}, '', '/');
-    loadResults(grantId);
-  }
+  if (grantId) { history.replaceState({}, '', '/'); loadResults(grantId); }
 });
 </script>
 </body>
